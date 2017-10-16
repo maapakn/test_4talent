@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City:</strong>
+  <%= @temperature.city %>
+</p>
+
+<p>
+  <strong>Temp:</strong>
+  <%= @temperature.temp %>
+</p>
+
+<p>
+  <strong>Pressure:</strong>
+  <%= @temperature.pressure %>
+</p>
+
+<p>
+  <strong>Humidity:</strong>
+  <%= @temperature.humidity %>
+</p>
+
+<p>
+  <strong>Temp min:</strong>
+  <%= @temperature.temp_min %>
+</p>
+
+<p>
+  <strong>Temp max:</strong>
+  <%= @temperature.temp_max %>
+</p>
+
+<%= link_to 'Edit', edit_temperature_path(@temperature) %> |
+<%= link_to 'Back', temperatures_path %>

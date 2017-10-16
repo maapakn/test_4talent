@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Temperatures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Temp</th>
+      <th>Pressure</th>
+      <th>Humidity</th>
+      <th>Temp min</th>
+      <th>Temp max</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @temperatures.each do |temperature| %>
+      <tr>
+        <td><%= temperature.city %></td>
+        <td><%= temperature.temp %></td>
+        <td><%= temperature.pressure %></td>
+        <td><%= temperature.humidity %></td>
+        <td><%= temperature.temp_min %></td>
+        <td><%= temperature.temp_max %></td>
+        <td><%= link_to 'Show', temperature %></td>
+        <td><%= link_to 'Edit', edit_temperature_path(temperature) %></td>
+        <td><%= link_to 'Destroy', temperature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Temperature', new_temperature_path %>

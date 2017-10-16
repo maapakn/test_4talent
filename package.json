@@ -1,0 +1,17 @@
+{
+  "name": "test_4talent",
+  "private": true,
+  "dependencies": {
+    "@nuxtjs/axios": "^4.4.0",
+    "@rails/webpacker": "^3.0.2",
+    "babel-preset-react": "^6.24.1",
+    "coffeescript": "1.12.7",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react_ujs": "^2.3.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.9.2"
+  }
+}

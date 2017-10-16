@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: one
+  temp: 1.5
+  pressure: 1.5
+  humidity: 1
+  temp_min: 1.5
+  temp_max: 1.5
+
+two:
+  city: two
+  temp: 1.5
+  pressure: 1.5
+  humidity: 1
+  temp_min: 1.5
+  temp_max: 1.5
