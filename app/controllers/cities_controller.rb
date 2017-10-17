@@ -4,7 +4,9 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.json
   def index
-    @cities = JSON.parse(City.all.map{|city|{id: city.id, name: city.name, temp: city.temp, temperatures: city.temperatures ? city.temperatures : []}}.to_json)
+    @cities = JSON.parse(City.all.map{|city|
+      {id: city.id, name: city.name, temp: city.temp, temperatures: city.temperatures ? city.temperatures : []}
+    }.to_json)
   end
 
   # GET /cities/1
@@ -14,9 +16,8 @@ class CitiesController < ApplicationController
 
   # GET /cities/:id/get_temps
   def get_temps
-    render json: Rails.configuration.open_weather_api.current(city: @city.name)["main"], status: 200
     @temp = Rails.configuration.open_weather_api.current(city: @city.name)["main"]
-    Temperature.create({
+    @temperature = Temperature.create!({
       city: @city,
       temp: @temp["temp"],
       pressure: @temp["pressure"],
@@ -25,6 +26,7 @@ class CitiesController < ApplicationController
       temp_max: @temp["temp_max"]
       }
     )
+    render json: @temperature, status: 200
   end
 
   # GET /cities/new

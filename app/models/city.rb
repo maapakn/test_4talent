@@ -2,10 +2,6 @@ class City < ApplicationRecord
   has_many :temperatures
 
   def temp
-    if self.temperatures.present?
-      return self.temperatures.last.temp
-    else
-      return nil
-    end
+    self.temperatures.present? ? self.temperatures.last.temp : nil
   end
 end
