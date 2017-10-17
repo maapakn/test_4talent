@@ -29,6 +29,13 @@ class CitiesController < ApplicationController
     render json: @temperature, status: 200
   end
 
+  def refresh_data
+    @cities = JSON.parse(City.all.map{|city|
+      {id: city.id, name: city.name, temp: city.temp, temperatures: city.temperatures ? city.temperatures : []}
+    }.to_json)
+    render json: @cities, status: 200
+  end
+
   # GET /cities/new
   def new
     @city = City.new

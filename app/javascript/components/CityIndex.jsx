@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { getTemps } from './actions';
+import { refreshData } from './actions';
 
 export default class CityIndex extends Component {
   constructor(props) {
@@ -16,12 +17,23 @@ export default class CityIndex extends Component {
   }
 
   componentDidMount() {
+    refreshData((response) => {
+      console.log('refresh');
+      console.log(response.data);
+    });
   }
 
   handleGetTemps(city_id){
     getTemps(city_id, (response) => {
       console.log(response.data);
     });
+    refreshData((response) => {
+      console.log('refresh');
+      console.log(response.data);
+      this.setState({cities: response.data});
+    });
+  }
+
   setCityForShow(city){
     this.setState({current_city: city});
   }
@@ -70,14 +82,28 @@ export default class CityIndex extends Component {
   }
 
   renderCities() {
-    if (this.props.cities) {
-      const {
-        cities
-      } = this.props;
+    if (this.state.cities.length != 0) {
 
+      console.log(this.state.cities)
+
+      return _.map(this.state.cities, (city, index) => {
+        return (
+          <tbody key={city.id}>
+            <tr>
+              <td>{city.name}</td>
+              <td>{city.temp}°</td>
+              <td>
+                <button className="btn btn-success" onClick={this.handleGetTemps.bind(this, city.id)}>Actualizar</button>
+                <button className="btn btn-info" onClick={this.setCityForShow.bind(this, city)}>Historial</button>
+              </td>
+            </tr>
+          </tbody>
+        )
+      });
+    }else if (this.props.cities) {
       console.log(this.props.cities)
 
-      return _.map(cities, (city, index) => {
+      return _.map(this.props.cities, (city, index) => {
         return (
           <tbody key={city.id}>
             <tr>
